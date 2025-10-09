@@ -79,6 +79,15 @@ export class MongoDBConnector {
     return db.collection(collectionName);
   }
 
+  async getDatabase(): Promise<Db> {
+    if (this.#handler) {
+      // If using a handler, we need to get the db from a collection
+      const tempCollection = await this.#handler.getCollection('__temp__');
+      return (tempCollection as any).db;
+    }
+    return this.getConnection();
+  }
+
   async close() {
     if (this.#client) {
       await this.#client.close();
