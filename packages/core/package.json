@@ -1,6 +1,6 @@
 {
   "name": "@mastra/core",
-  "version": "0.20.2",
+  "version": "0.21.1",
   "license": "Apache-2.0",
   "type": "module",
   "main": "dist/index.js",
@@ -182,6 +182,7 @@
     "pre-build": "tsup --silent --config tsup.config.ts --no-dts",
     "build": "node ./tools/commonjs-tsc-fixer.js",
     "build:watch": "pnpm build --watch",
+    "generate:providers": "pnpx tsx scripts/generate-providers.ts",
     "test:unit": "vitest run --exclude '**/tool-builder/**'",
     "test:types:zod": "node test-zod-compat.mjs",
     "test": "npm run test:types:zod && npm run test:unit"
@@ -219,6 +220,7 @@
     "json-schema": "^0.4.0",
     "json-schema-to-zod": "^2.6.1",
     "p-map": "^7.0.3",
+    "p-retry": "^7.1.0",
     "pino": "^9.7.0",
     "pino-pretty": "^13.0.0",
     "radash": "^12.1.1",
@@ -242,7 +244,6 @@
     "@internal/types-builder": "workspace:*",
     "@microsoft/api-extractor": "^7.52.8",
     "@openrouter/ai-sdk-provider": "^0.4.6",
-    "@openrouter/ai-sdk-provider-v5": "npm:@openrouter/ai-sdk-provider@1.1.2",
     "@types/babel__core": "^7.20.5",
     "@types/json-schema": "^7.0.15",
     "@types/lodash-es": "^4.17.12",
